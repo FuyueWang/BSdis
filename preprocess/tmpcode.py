@@ -2,21 +2,21 @@
 
 
  def createArtificialnoisywaveformfromlowestnoisewave():
-
-     lowestnoisewave=np.array(waveform)[datadf.noise<noise[0] ,:]
-     lowestnoiselabel=np.loadtxt('../../data/dfdata/gmmlabels.txt')
-     lowestnoiselabel=lowestnoiselabel.reshape(lowestnoiselabel.shape[0],1)
-     lowestnoiselabel=np.concatenate((lowestnoiselabel,lowestnoiselabel),axis=0)
-     for noi in range(1,7):
-         noisecollection=np.loadtxt('../../data/dfdata/noisecollection'+str(noi)+'.txt')
-         noisestart=np.array(random.sample(range(0,noisecollection.shape[0]-3001), lowestnoiselabel.shape[0]))
-         for k in range(thiswave.shape[0]):
-             thiswave1[k,:]=lowestnoisewave[k,:]+noisecollection[np.arange(noisestart[k],noisestart[k]+3000)]
-             for k in range(thiswave.shape[0]):
-                 thiswave2[k,:]=lowestnoisewave[k,:]+noisecollection[np.arange(noisestart[k],noisestart[k]+3000)]
-             thiswave=np.concatenate((thiswave1,thiswave2),axis=0)
-             thiswave=np.concatenate((thiswave,lowestnoiselabel),axis=1)
-             np.savetxt('../../data/dfdata/artificial'+str(noi)+'.txt',thiswave)
+     
+    lowestnoisewave=np.array(waveform)[datadf.noise<noise[0] ,:]
+    lowestnoiselabel=np.loadtxt('../../data/dfdata/gmmlabels.txt')
+    lowestnoiselabel=lowestnoiselabel.reshape(lowestnoiselabel.shape[0],1)
+    lowestnoiselabel=np.concatenate((lowestnoiselabel,lowestnoiselabel),axis=0)
+    for noi in range(1,7):
+        noisecollection=np.loadtxt('../../data/dfdata/noisecollection'+str(noi)+'.txt')
+        noisestart=np.array(random.sample(range(0,noisecollection.shape[0]-3001), lowestnoiselabel.shape[0]))
+        for k in range(thiswave.shape[0]):
+            thiswave1[k,:]=lowestnoisewave[k,:]+noisecollection[np.arange(noisestart[k],noisestart[k]+3000)]
+        for k in range(thiswave.shape[0]):
+            thiswave2[k,:]=lowestnoisewave[k,:]+noisecollection[np.arange(noisestart[k],noisestart[k]+3000)]
+        thiswave=np.concatenate((thiswave1,thiswave2),axis=0)
+        thiswave=np.concatenate((thiswave,lowestnoiselabel),axis=1)
+        np.savetxt('../../data/dfdata/artificial'+str(noi)+'.txt',thiswave)
  
 
 

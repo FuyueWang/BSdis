@@ -131,7 +131,7 @@ def createunsuperviseddata():
     length55=np.abs(wave-0.55).argmin(axis=1)-np.abs(wave-0.45).argmin(axis=1)
     feature=np.concatenate((length95,length90,length85,length80,length75,length70,length65,length60,length55),axis=0).reshape(9,length90.shape[0]).T
     print('feature shape:',feature.shape)
-    with open(unsuperviseddatadir+source+'train.dat', 'wb') as f:
+    with open(unsuperviseddatadir+source+'featuretrain.dat', 'wb') as f:
         pickle.dump(feature, f)
 
 createunsuperviseddata()

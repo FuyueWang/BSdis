@@ -11,7 +11,7 @@ datadir='../../data/unsupervised/'
 preprossdatadir='../../data/preprocess/'
 source="Cs137" #"Co60"
 
-with open(datadir+source+'train.dat', 'rb') as f:
+with open(datadir+source+'featuretrain.dat', 'rb') as f:
     feature = pickle.load(f)
     
 X=feature[:,4:]
@@ -30,9 +30,8 @@ with open(preprossdatadir+source+'normedwaveform0.dat', 'rb') as f:
     data = pickle.load(f)
 paradf=data['para']
 paradf['glabels']=glabels
-dictdata=dict(waveform=data['waveform'],para=paradf)
-with open(datadir+source+'testresultwithlabel.dat', 'wb') as f:
-    pickle.dump(dictdata,f)
+with open(datadir+source+'testresultlabel.dat', 'wb') as f:
+    pickle.dump(paradf,f)
 
 
 fig = plt.figure(figsize=(15,7))
